@@ -1,11 +1,12 @@
 import Button from '@/components/ui/Button'
-import { FC } from 'react'
 
-interface pageProps {
+type Props = {}
+
+export default async function Home(props: Props) {
+
+  return (
+    <div>
+      <Button size={'lg'} >Home</Button>
+    </div>
+  )
 }
-
-const page: FC<pageProps> = ({ }) => {
-  return <div><Button  size={'lg'} >Button</Button></div>
-}
-
-export default page
