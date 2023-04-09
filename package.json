@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@next-auth/upstash-redis-adapter": "^3.0.4",
     "@types/node": "18.15.11",
     "@types/react": "18.0.33",
     "@types/react-dom": "18.0.11",
@@ -20,6 +21,7 @@
     "eslint-config-next": "13.3.0",
     "lucide-react": "^0.132.0",
     "next": "13.3.0",
+    "next-auth": "^4.21.1",
     "postcss": "8.4.21",
     "react": "18.2.0",
     "react-dom": "18.2.0",
