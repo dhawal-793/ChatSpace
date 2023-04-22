@@ -3,7 +3,6 @@
 import Button from '@/components/ui/Button'
 import { FC, useState } from 'react'
 import { signIn } from "next-auth/react"
-// import Google from 'next-auth/providers/google'
 import { toast } from 'react-hot-toast'
 
 interface pageProps {
@@ -17,7 +16,6 @@ const LoginPage: FC<pageProps> = ({ }) => {
         setIsLoading(true)
         try {
             await signIn('google')
-            // throw new Error('Something wen wrong')
         } catch (error) {
             toast.error('Something went Wrong');
         } finally {
