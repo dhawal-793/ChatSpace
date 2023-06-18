@@ -1,12 +1,14 @@
 import Button from '@/components/ui/Button'
+import Link from 'next/link'
 
 type Props = {}
 
 export default async function Home(props: Props) {
 
   return (
-    <div>
-      <Button size={'lg'} >Home</Button>
+    <div className="text-center">
+      <p>Home Page</p>
+      <Link href="/login" >Login</Link>
     </div>
   )
 }
