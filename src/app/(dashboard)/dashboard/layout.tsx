@@ -1,4 +1,4 @@
-import { fetchRedis } from '@/app/api/friends/add/helpers/redis'
+import { fetchRedis } from '@/helpers/redis'
 import FriendRequestSidebarOptions from '@/components/FriendRequestSidebarOptions'
 import SignOutButton from '@/components/SignOutButton'
 import { Icon, Icons } from '@/components/ui/Icons'
