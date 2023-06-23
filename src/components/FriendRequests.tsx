@@ -29,7 +29,9 @@ const FriendRequests: FC<FriendRequestsProps> = ({ incomingFriendRequests, sessi
     return (
         <>
             {FriendRequests.length === 0 ?
-                <p className='text-sm text-zinc-500 '>Nothing to show here...</p>
+                <div className='flex items-center gap-4 '>
+                    <p className='text-sm text-zinc-500 '>Nothing to show here...</p>
+                </div>
                 :
                 friendRequests.map(({ senderId, senderEmail }) => (
                     <div key={senderId} className="flex items-center gap-4 ">
