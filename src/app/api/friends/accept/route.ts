@@ -2,7 +2,7 @@ import { authOptions } from "@/lib/auth"
 import { db } from "@/lib/db"
 import { getServerSession } from "next-auth"
 import { z } from "zod"
-import { fetchRedis } from "../add/helpers/redis"
+import { fetchRedis } from "@/helpers/redis"
 
 export async function POST(req: Request) {
     try {

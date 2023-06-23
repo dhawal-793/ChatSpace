@@ -1,4 +1,4 @@
-import { fetchRedis } from '@/app/api/friends/add/helpers/redis'
+import { fetchRedis } from '@/helpers/redis'
 import FriendRequests from '@/components/FriendRequests'
 import { authOptions } from '@/lib/auth'
 import { getServerSession } from 'next-auth'

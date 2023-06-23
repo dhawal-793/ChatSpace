@@ -1,4 +1,4 @@
-import { fetchRedis } from "@/app/api/friends/add/helpers/redis";
+import { fetchRedis } from "@/helpers/redis";
 import { UpstashRedisAdapter } from "@next-auth/upstash-redis-adapter";
 import { NextAuthOptions } from "next-auth";
 import GoogleProvider from "next-auth/providers/google"
