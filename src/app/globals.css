@@ -6,7 +6,7 @@
   width: 0.25rem;
   height: 0.25rem;
 }
-.scrolbar-track-blue-lighter::-webkit-scrollbar-track {
+.scrollbar-track-blue-lighter::-webkit-scrollbar-track {
   --bg-opacity: 1;
   background-color: #f7faf7;
   background-color: rgba(247, 250, 252, var(--bg-opacity));

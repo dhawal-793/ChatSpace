@@ -12,7 +12,7 @@ const Messages: FC<MessagesProps> = ({ initialmessages, senderId }) => {
     const [messages, setMessages] = useState(initialmessages)
     const scrollDownRef = useRef<HTMLDivElement | null>(null)
 
-    return <div id='messages' className='flex flex-col-reverse flex-1 h-full gap-4 overflow-y-auto scrolling-touch scrollbar-thumb-blue scrollbar-w-2 scrollbar-thumb-rounded scrolbar-track-blue-lighter'>
+    return <div id='messages' className='flex flex-col-reverse flex-1 h-full gap-4 overflow-y-auto scrolling-touch scrollbar-thumb-blue scrollbar-w-2 scrollbar-thumb-rounded scrollbar-track-blue-lighter'>
         <div ref={scrollDownRef} />
         {
             messages.map((message, index) => {
