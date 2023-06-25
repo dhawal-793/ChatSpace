@@ -43,15 +43,15 @@ const Layout = async ({ children }: LayoutProps) => {
     const unseenRequestCount = (await fetchRedis('smembers', `user:${session.user.id}:incoming_friend_requests`) as User[]).length
 
     return <div className='flex w-full h-screen'>
-        <div className='flex flex-col w-full h-full max-w-xs px-6 overflow-y-auto bg-white border-r border-gray-200 grow gapy-5'>
+        <div className='flex flex-col w-full h-full max-w-xs px-6 overflow-y-auto bg-white border-r border-gray-200 grow gap-y-5'>
             <Link href="/dashboard" className='flex items-center h-16 shrink-0'>
                 <Icons.Logo className='w-auto h-8 text-indigo-600' />
             </Link>
             <nav className="flex flex-col flex-1">
-                <ul role="list" className="flex flex-col flex-1 gap-y-7">
+                <ul role="list" className="flex flex-col flex-1 -mr-2 gap-y-7">
                     {friends.length > 0 && <li>
                         <div className="text-xs font-semibold leading-6 text-gray-400">Your Chats</div>
-                        <SideBarChatList friends={friends} />
+                        <SideBarChatList sessionId={session.user.id} friends={friends} />
                     </li>}
                     <li>
                         <div className='text-xs font-semibold leading-6 text-gray-600'>
@@ -69,10 +69,10 @@ const Layout = async ({ children }: LayoutProps) => {
                                     </li>
                                 )
                             })}
+                            <li>
+                                <FriendRequestSidebarOptions sessionId={session.user.id} initialUnseenRequestCount={unseenRequestCount} />
+                            </li>
                         </ul>
-                    </li>
-                    <li>
-                        <FriendRequestSidebarOptions sessionId={session.user.id} initialUnseenRequestCount={unseenRequestCount} />
                     </li>
                     <li className='flex items-center mt-auto -mx-6'>
                         <div className="flex items-center flex-1 px-6 py-3 text-sm font-semibold leading-6 text-gray-900 gap-x-4 ">
