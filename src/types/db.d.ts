@@ -13,7 +13,7 @@ interface Chat {
 interface Message {
     id: string,
     senderId: string,
-    recieverId: string,
+    receiverId: string,
     text: string,
     timestamp: number
 }
@@ -21,5 +21,5 @@ interface Message {
 interface FreiendRequest {
     id: string,
     senderId: string,
-    recieverId: string,
+    receiverId: string,
 }
