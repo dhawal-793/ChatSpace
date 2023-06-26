@@ -8,10 +8,7 @@ const Dashboard = async ({ }) => {
     return (
         <>
             <h1>Dashboard</h1>
-            
-            <pre className='max-w-md p-3 '>
-                {JSON.stringify(session)}
-            </pre>
+
         </>
     )
 }
