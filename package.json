@@ -21,6 +21,7 @@
     "class-variance-authority": "^0.5.1",
     "clsx": "^1.2.1",
     "date-fns": "^2.30.0",
+    "encoding": "^0.1.13",
     "eslint": "8.38.0",
     "eslint-config-next": "13.3.0",
     "lucide-react": "^0.132.0",
