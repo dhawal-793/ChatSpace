@@ -57,7 +57,7 @@ const FriendRequests: FC<FriendRequestsProps> = ({ incomingFriendRequests, sessi
 
     return (
         <>
-            {FriendRequests.length === 0 ?
+            {friendRequests.length === 0 ?
                 <div className='flex items-center gap-4 '>
                     <p className='text-sm text-zinc-500 '>Nothing to show here...</p>
                 </div>

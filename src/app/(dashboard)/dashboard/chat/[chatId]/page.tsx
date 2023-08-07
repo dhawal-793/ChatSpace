@@ -29,7 +29,6 @@ async function getMessages(chatId: string) {
 }
 
 const page = async ({ params }: pageProps) => {
-
     const { chatId } = params
 
     const session = await getServerSession(authOptions)
@@ -44,7 +43,8 @@ const page = async ({ params }: pageProps) => {
     const chatPartnerId = user.id === userId1 ? userid2 : userId1
     const chatPartner = await (db.get(`user:${chatPartnerId}`)) as User
     const initialMesages = (await getMessages(chatId)) as Message[]
-
+    
+// mock a delay of 2000 ms
     return <div className='flex flex-col justify-between flex-1 h-full max-h-[calc(100vh-6rem)]'>
         <div className='flex justify-between py-3 border-b-2 border-gray-200 sm:items-center'>
             <div className="relative flex items-center space-x-4">
@@ -61,7 +61,7 @@ const page = async ({ params }: pageProps) => {
                 </div>
             </div>
         </div>
-        <Messages initialmessages={initialMesages} sessionId={session.user.id} sessionImg={session.user.image} chatPartner={chatPartner} />
+        <Messages initialmessages={initialMesages} chatId={chatId} sessionId={session.user.id} sessionImg={session.user.image} chatPartner={chatPartner} />
         <ChatInput chatId={chatId} chatPartner={chatPartner} />
     </div>
 }
