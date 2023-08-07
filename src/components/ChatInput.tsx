@@ -16,6 +16,7 @@ const ChatInput: FC<ChatInputProps> = ({ chatId, chatPartner }) => {
     const [isLoading, setIsLoading] = useState<boolean>(false)
 
     const sendMessage = async () => {
+        if (!input) return
         setIsLoading(true)
         try {
             await axios.post('/api/message/send', { text: input, chatId })
@@ -34,7 +35,6 @@ const ChatInput: FC<ChatInputProps> = ({ chatId, chatPartner }) => {
             <TextareaAutosize ref={textAreaRef} onKeyDown={(e) => {
                 if (e.key === 'Enter' && !e.shiftKey) {
                     e.preventDefault()
-                    console.log('send message');
                     sendMessage()
                 }
             }}
