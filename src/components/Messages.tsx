@@ -1,18 +1,20 @@
 'use client'
-import { cn } from '@/lib/utils'
+import { pusherClient } from '@/lib/pusher'
+import { cn, toPusherKey } from '@/lib/utils'
 import { Message } from '@/lib/validations/message'
 import { format } from 'date-fns'
 import Image from 'next/image'
-import { FC, useRef, useState } from 'react'
+import { FC, useEffect, useRef, useState } from 'react'
 
 interface MessagesProps {
     sessionId: string
     sessionImg: string | null | undefined
     initialmessages: Message[]
+    chatId: string
     chatPartner: User
 }
 
-const Messages: FC<MessagesProps> = ({ initialmessages, sessionId, chatPartner, sessionImg }) => {
+const Messages: FC<MessagesProps> = ({ initialmessages, sessionId, chatId, chatPartner, sessionImg }) => {
 
     const [messages, setMessages] = useState(initialmessages)
     const scrollDownRef = useRef<HTMLDivElement | null>(null)
@@ -20,6 +22,24 @@ const Messages: FC<MessagesProps> = ({ initialmessages, sessionId, chatPartner, 
     const formatTimestamp = (timestamp: number) => {
         return format(timestamp, 'HH:m')
     }
+
+    useEffect(() => {
+        pusherClient.subscribe(
+            toPusherKey(`chat:${chatId}`)
+        )
+        const messagesHandler = (message: Message) => {
+            setMessages(prev => [message, ...prev])
+        }
+
+        pusherClient.bind('incoming_message', messagesHandler)
+
+        return () => {
+            pusherClient.unsubscribe(
+                toPusherKey(`chat:${chatId}`)
+            )
+            pusherClient.unbind('incoming_message', messagesHandler)
+        }
+    }, [sessionId, chatId])
 
     return <div id='messages' className='flex flex-col-reverse flex-1 h-full gap-4 overflow-y-auto scrolling-touch scrollbar-thumb-blue scrollbar-w-2 scrollbar-thumb-rounded scrollbar-track-blue-lighter'>
         <div ref={scrollDownRef} />
@@ -43,7 +63,7 @@ const Messages: FC<MessagesProps> = ({ initialmessages, sessionId, chatPartner, 
                             'order-1 items-end': isCurrentUser,
                             'order-2,items-start': !isCurrentUser
                         })}>
-                            <span className={cn('px-4 py-2 rounded-lg inline-block', {
+                            <span className={cn('px-4 py-2 rounded-lg inline-block break-words', {
                                 'bg-indigo-600 text-white': isCurrentUser,
                                 'bg-gray-200 text-gray-900': !isCurrentUser,
                                 'rounded-br-none': !hasNextMessageFromSameUser && isCurrentUser,
@@ -53,9 +73,7 @@ const Messages: FC<MessagesProps> = ({ initialmessages, sessionId, chatPartner, 
                                 <span className='ml-2 text-xs text-gray-400'>{formatTimestamp(message.timestamp)}</span>
                             </span>
                         </div>
-
                     </div>
-
                 </div>
             })}
     </div>
